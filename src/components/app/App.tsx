@@ -1,10 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import * as svgIcons from '@fortawesome/free-solid-svg-icons';
+
+const gatRandomPropertyFromObj = (obj: any): any => {
+  var keys = Object.keys(obj);
+  return obj[keys[keys.length * Math.random() << 0]];
+};
 
 function App() {
+  const [icon, setIcon] = useState(gatRandomPropertyFromObj(svgIcons));
+
+  const randomizeHandle = () => {
+    setIcon(gatRandomPropertyFromObj(svgIcons));
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -13,9 +23,9 @@ function App() {
       <div className="wrapper">
         <div>
           Random Icon:&nbsp;
-          <FontAwesomeIcon icon={faCoffee} />
+          <FontAwesomeIcon icon={icon} />
         </div>
-        <button>Click me to randomize icon</button>
+        <button onClick={randomizeHandle}>Click me to randomize icon</button>
       </div>
       <footer className="App-footer">
         Icons are taken from the&nbsp;
