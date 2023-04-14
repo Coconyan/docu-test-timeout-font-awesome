@@ -1,31 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import RandomizeEachClick from '../randomize-each-click/randomize-each-click';
 import * as svgIcons from '@fortawesome/free-solid-svg-icons';
-
-const gatRandomPropertyFromObj = (obj: any): any => {
-  var keys = Object.keys(obj);
-  return obj[keys[keys.length * Math.random() << 0]];
-};
+import RandomizeLastClick from '../randomize-last-click/randomize-last-click';
 
 function App() {
-  const [icon, setIcon] = useState(gatRandomPropertyFromObj(svgIcons));
-
-  const randomizeHandle = () => {
-    setIcon(gatRandomPropertyFromObj(svgIcons));
-  }
-
   return (
     <div className="App">
       <header className="App-header">
-        Docu Font Awesome Test
+        DocuSketch Font Awesome Test
       </header>
-      <div className="wrapper">
-        <div>
-          Random Icon:&nbsp;
-          <FontAwesomeIcon icon={icon} />
-        </div>
-        <button onClick={randomizeHandle}>Click me to randomize icon</button>
+      <div className="Randomize-wrapper">
+        <RandomizeEachClick svgIcons={svgIcons} />
+        <RandomizeLastClick svgIcons={svgIcons} />
       </div>
       <footer className="App-footer">
         Icons are taken from the&nbsp;
